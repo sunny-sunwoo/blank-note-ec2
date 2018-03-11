@@ -44,7 +44,8 @@ Achieved integration of data models with:
 
 Increased familiarity with client-side web programming, including the use of JavaScript (and optionally—but hopefully—JavaScript libraries) for DOM manipulation and Ajax.
 
-	+ The global and follower streams update with new posts and comments, without refreshing the HTML page, <br> every 5 seconds, using Ajax.
+	+ The global and follower streams update with new posts and comments, without refreshing the HTML page, 
+	every 5 seconds, using Ajax.
 
 	+ Logged-in users are able to add comments to posts anywhere posts are shown.
 
