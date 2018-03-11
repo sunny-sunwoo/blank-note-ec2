@@ -1,6 +1,6 @@
 # Social Network UI
 
-URL http://18.221.3.211/
+URL http://18.221.3.211/ <br>
 Pyton 3.6.4<br>
 
 I will build an increasingly sophisticated nano-blogging site. This site will eventually be a featureful, interactive web application photo upload, and quasi-real-time updates.
@@ -44,7 +44,7 @@ Achieved integration of data models with:
 
 Increased familiarity with client-side web programming, including the use of JavaScript (and optionally—but hopefully—JavaScript libraries) for DOM manipulation and Ajax.
 
-	+ The global and follower streams update with new posts and comments, without refreshing the HTML page, every 5 seconds, using Ajax.
+	+ The global and follower streams update with new posts and comments, without refreshing the HTML page, <br> every 5 seconds, using Ajax.
 
 	+ Logged-in users are able to add comments to posts anywhere posts are shown.
 
@@ -54,13 +54,13 @@ Increased familiarity with client-side web programming, including the use of Jav
 
 Added email validation of user accounts and you will deploy your application to the cloud.
 
-	1. When registering a new account:
-		+ require that an email address to be provided,
-		+ send, via email, a link that can be clicked on to validate the email address.
+	+ When registering a new account:
+		- require that an email address to be provided,
+		- send, via email, a link that can be clicked on to validate the email address.
 
-	2. Installed and configured MySQL.
+	+ Installed and configured MySQL.
 
-	3. Deployed the social network application on AWS EC2.
+	+ Deployed the social network application on AWS EC2.
 
 
 
