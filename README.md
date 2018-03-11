@@ -1,4 +1,4 @@
-# Social Network UI
+# BlankNote
 
 URL http://18.221.3.211/ <br>
 Pyton 3.6.4<br>
