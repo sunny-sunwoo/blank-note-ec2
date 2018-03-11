@@ -1,0 +1,24 @@
+{% extends "socialnetwork/base.html" %}
+{% load tz %}
+
+{% block user-info %}
+    {{user.first_name}} {{user.last_name}} 
+    <!-- username={{user.username}} -->
+
+    <form action="{% url 'logout' %}" method="get">
+        <input type="submit" value="Logout" class="btn__logout my-lg-2">
+    </form>
+{% endblock %}
+
+
+{% block post-create %}
+    <div class="container">
+        <div class="row">
+            <div class="d-block col-12 col-md-10 col-lg-6 push-md-1 push-lg-3 py-4 my-5">
+                <input id="post" name="post" type="text" placeholder="What's on your mind?" size="50">
+                <button onclick="addPost()" class="btn__logout mx-2 my-2">Create Your Note</button>
+                <span id="error" class="error"></span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

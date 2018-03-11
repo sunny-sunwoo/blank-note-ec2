@@ -1,0 +1,82 @@
+{% extends "socialnetwork/base.html" %}
+
+
+{% block user-info %}
+    {{user.first_name}} {{user.last_name}} 
+    <!-- username={{user.username}} -->
+
+    <form action="{% url 'logout' %}" method="get">
+        <input type="submit" value="Logout" class="btn__logout my-lg-2">
+    </form>
+{% endblock %}
+
+{% block profile-info %}
+    {% if profile.picture %}
+        <img src="{% url 'photo' profile.id %}" alt="{{profile.bio}}" class="author__img m-auto">
+        <br>
+    {% endif %}
+ 
+    <h2 class="author__name mb-2 mt-3">{{user.first_name}} {{user.last_name}} </h2>
+    {% if profile.bio %}
+    <p class="author__text mb-3">
+        {{profile.bio}}
+    </p>
+    {% endif %}
+    <div class="following m-auto">
+        <p>You are following..</p>
+        <p class="follower__list">{% if followees %} 
+                {% for followee in followees %}
+                   <a href="{% url 'other_profile' %}?last={{followee.id}}" >&plus; {{followee.username}}</a> &nbsp; 
+                {% endfor %}
+            {% endif %}</p>
+    </div>
+{% endblock %}
+
+{% block following-list %}
+   <!-- Main -->
+    <main class="main">
+            <section class="posts container">
+                <h2 class="sr-only">Global Stream</h2>
+                <ul class="post__list">
+                    {% for post in following_posts %}
+                        <li class="post__item mb-5 row">
+                                <div class="d-block col-12 col-md-10 col-lg-6 push-md-1 push-lg-3 py-4">
+                                    <a href="{% url 'other_profile' %}?last={{post.author.id}}">
+                                        <h4 class="post__title mb-4">
+                                            {{post.text}}
+                                        </h4>
+                                        <p class="post__text"><em>{{post.author}}</em></p>
+                                        <p class="post__date">
+                                            {{post.published_date}}
+                                        </p>
+                                    </a>
+                                    <div class= "py-2 my-3">
+                                        {% for comment in comments %}
+                                        {% if comment.post == post %}
+                                            {% if comment.commenter == request.user %}
+                                            <a href="{% url 'my_profile' %}"><p class="comment__text"><em>{{comment.commenter}}</em> {{comment.text}} -- {{comment.published_date}}</p></a>
+                                            {% endif %}
+                                            {% if comment.commenter != request.user %}
+                                            <a href="{% url 'other_profile' %}?last={{comment.commenter.id}}"><p class="comment__text"><em>{{comment.commenter}}</em> {{comment.text}} -- {{comment.published_date}}</p></a>
+                                            {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
+                                            <br>
+                                    </div>
+
+                <div class = 'comment-create'>
+                <input id="comment-{{post.id}}" class="new-comment my-2" name="comment" type="text" placeholder="Any Comment?" size="40">
+                <button onclick="addComment({{post.id}})" class="btn__logout mx-2 my-2">Add here</button>
+                <span id="error" class="error"></span>
+                </div>
+
+                </div>
+                </li>
+                    {% endfor %}
+                    
+                                          
+                </ul>
+            </section>
+    </main>
+{% endblock %}   
+<!-- //Main -->

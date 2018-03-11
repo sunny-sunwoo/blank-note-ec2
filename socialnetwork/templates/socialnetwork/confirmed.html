@@ -1,0 +1,13 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block content %}
+Thank you for confirming your email address.
+
+<br/><br/>
+
+<form action="{% url 'login' %}" method="GET">
+    Please
+    <button type="submit" >Login</button>
+    to access your address book.
+</form>
+{% endblock %}

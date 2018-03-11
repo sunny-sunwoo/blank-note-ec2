@@ -1,0 +1,56 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block user-info %}
+    {{user.first_name}} {{user.last_name}} 
+    <!-- username={{user.username}} -->
+
+    <form action="{% url 'logout' %}" method="get">
+        <input type="submit" value="Logout" class="btn__logout my-lg-2">
+    </form>
+{% endblock %}
+
+{% block profile-info %}
+    
+    {% if profile.picture %}
+        <img src="{% url 'photo' profile.id %}" alt="" class="author__img m-auto">
+        <br>
+    {% endif %}
+ 
+    <h2 class="author__name mb-2 mt-3">{{user.first_name}} {{user.last_name}} </h2>
+    {% if profile.bio %}
+    <p class="author__text mb-3">
+        {{profile.bio}}
+    </p>
+    {% endif %}
+    <div class="following m-auto">
+        <p>You are following..</p>
+        <p class="follower__list">{% if followees %} 
+                {% for followee in followees %}
+                   <a href="{% url 'other_profile' %}?last={{followee.id}}" >&plus; {{followee.username}}</a> &nbsp; 
+                {% endfor %}
+            {% endif %}</p>
+
+    </div>
+
+
+    <div class="profile-upload mx-4">
+        <p style="text-align: left;">Update your profile :-) </p>
+        <form enctype="multipart/form-data" action="{% url 'my_profile' %}" method="post" class="add-form" id="update_user_form">
+        <table>
+            {% for field in form.visible_fields %}
+                <tr>
+                    <td>{{field.label_tag}}</td>
+                    <td>{{field}}</td>
+                    <td class="error">
+                        {% for error in field.errors %} {{error}} {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr><td colspan="3"><input type="submit" value="Update Profile" class="btn__comment"></td></tr>
+        </table>
+            {% csrf_token %}
+        </form>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,50 @@
+{% extends "socialnetwork/base.html" %}
+
+{% block user-info %}
+    {{user.first_name}} {{user.last_name}} 
+    <!-- username={{user.username}} -->
+
+    <form action="{% url 'logout' %}" method="get">
+        <input type="submit" value="Logout" class="btn__logout my-lg-2">
+    </form>
+{% endblock %}
+
+{% block profile-info %}
+    
+    {% if profile.picture %}
+        <img src="{% url 'photo' profile.id %}" alt="{{profile.bio}}" class="author__img m-auto">
+        <br>
+    {% endif %}
+ 
+    <h2 class="author__name mb-2 mt-3">{{profile.profile_user}}</h2>
+
+    {% if profile.bio %}
+    <p class="author__text mb-3">
+        {{profile.bio}}
+    </p>
+    {% endif %}
+
+    {% if not following %}
+    <form action="{% url 'follow' %}?last={{profile.profile_user.id}}" method='post'>
+        <div class="following m-auto">
+            <input type="submit" value="Follow" class="btn-not-following px-3 py-2 mb-5">
+                {% csrf_token %}
+        </div>
+    </form>
+    {% endif %}
+
+    {% if following %}
+    <form action="{% url 'unfollow' %}?last={{profile.profile_user.id}}" method="post">
+        <div class="following m-auto">
+            <input type="submit" value="Follow" class="btn-following px-3 py-2 mb-5">
+                {% csrf_token %}
+            <p>{{user.username}} <br> is following you :) </p>
+        </div>      
+    </form>
+    {% endif %}
+
+   
+{% endblock %}
+
+
+

@@ -1,0 +1,23 @@
+*.log
+*.pot
+*.pyc
+local_settings.py
+
+# Editor backup files
+*~
+*#
+
+# Django's SQL Lite Database File
+db.sqlite3
+
+# Image files (so we don't put into the repo demo files uploaded when this app was run)
+*.jpg
+*.gif
+*.jpeg
+*.png
+
+# MacOS index file
+.DS_Store
+
+# access keys
+config.ini
